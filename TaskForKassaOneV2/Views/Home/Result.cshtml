@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "расчет";
+}
+
+@model Loan
+
+
+<table class="table table-success table-striped">
+    <tr><th>№Платежа</th><th>Дата платежа</th><th>Ежемесячный платеж</th><th>Размер платежа по телу</th><th>Размер платежа по %</th><th>Остаток основного долга</th></tr>
+@for(int i = 0; i < Model.loanDisplay.Count; i++)
+{
+    <tr><td>@Model.loanDisplay[i].Id</td><td>@string.Format("{0:0.##}", Model.loanDisplay[i].PeriodDatePaymentString)</td><td>@string.Format("{0:0.##}", Model.loanDisplay[i].EveryPeriodPayment)</td><td>@string.Format("{0:0.##}", Model.loanDisplay[i].BodyPayment)</td><td>@string.Format("{0:0.##}", Model.loanDisplay[i].PercentPayment)</td><td>@string.Format("{0:0.##}", Model.loanDisplay[i].BalanceOwed)</td></tr>
+}
+    <tr><th></th><th></th><th>Итого выплачено</th><th>Сумма всех платежей по телу</th><th>Сумма всех платежей по %</th><th></th></tr>
+    <tr><td></td><td></td><td>@string.Format("{0:0.##}", Model.EveryPeriodPaymentAmount)</td><td>@string.Format("{0:0.##}", Model.BodyPaymentAmount)</td><td>@string.Format("{0:0.##}", Model.PercentPaymentAmount)</td><td></td></tr>
+</table>
+
